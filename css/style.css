@@ -1,18 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-size: 1.125rem;
   color: #707070;
   margin: 0;
-  background: pink;
+  background: #dfe7cd;
 }
 
-/* min-width 650px or bigger */
-@media (min-width: 500px) {
+/* @media (min-width: 768px) {
+  body {
+    background: lightblue;
+  }
+} */
+
+/* min-width 500px or bigger */
+@media (min-width: 500px) and (max-width: 767px) {
   body {
     background: orange;
   }
 }
 
-/* min-width 400px to 649px */
+/* min-width 400px to 649px: will have below styles */
 @media (min-width: 400px) and (max-width: 649px) {
   body {
     background: purple;
@@ -39,33 +51,43 @@ p {
   margin-top: 0;
 }
 
-/* Layout */
-
 img {
   max-width: 100%;
 }
 
-.conatiner {
-  width: 95%;
-  max-width: 960px;
+/* Layout */
+
+/* Size, margin, padding, gap */
+.container {
+  background: lightgreen;
+  width: 75%;
+  height: 100vh;
+  /* max-width: 960px; */
   margin: 0 auto;
 }
 
 .columns {
+  background: yellow;
   display: flex;
+  /* all the child elements of ".columns" will have some space between them */
   justify-content: space-between;
+  /* any element that uses ".columns" will only discard some space at top and bottom  */
   margin: 1em 0;
 }
 
 .col-1 {
   width: 20%;
+  background: red;
 }
 
 .col-2 {
   width: 45%;
+  background: #b7832f;
 }
 
 .col-3 {
+  background: lightgrey;
+  color: "#000000";
   width: 70%;
 }
 
