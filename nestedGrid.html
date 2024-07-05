@@ -20,7 +20,7 @@
         font: 1.1em/1.3 Tahoma, Verdana, Segoe, sans-serif;
         background-color: #0093e9;
         min-width: 100vw;
-        overflow: hidden;
+        /* overflow: hidden; */
       }
 
       h1 {
@@ -92,8 +92,14 @@
       .item6 {
         background: goldenrod;
       }
+      .item7 {
+        background: red;
+      }
+
+      .item8 {
+        background-color: blueviolet;
+      }
     </style>
-    
   </head>
   <body>
     <h1>Learn grid nested grid</h1>
@@ -106,8 +112,12 @@
         <div class="subitems3">C</div>
       </div>
       <div class="items item4">Four</div>
+      <!-- Since there are 2 rows so below are extras therefore a new row will be created, below 2 elements will sit as columns by occupying the available space -->
       <div class="items item5">Five</div>
       <div class="items item6">Six</div>
+      <!-- but if there are more columns like below, then Gird (by default) wraps it will create a new row and then place these 2 as columns as per the size defined  -->
+      <div class="items item7">Seven</div>
+      <div class="items item8">Eight</div>
     </div>
   </body>
 </html>
