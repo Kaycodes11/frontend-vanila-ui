@@ -1,110 +1,193 @@
 * {
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font: 1.1em/1.3 Tahoma, Verdana, Segoe, sans-serif;
-    min-width: 100vw;
-    margin: 1em auto;
-    padding: 0.5rem;
+  font: 1.1em/1.3 Tahoma, Verdana, Segoe, sans-serif;
+  min-width: 100vw;
+  background-color: lightblue;
+  /* Prevent body from scrolling */
+  overflow: hidden;
 }
 
 h1 {
-    color: green;
-}
-
-hr {
-    margin-top: 2rem;
+  color: green;
 }
 
 .flex-container {
-    border: 2px solid black;
-    width: 100%;
-    height: 70vh;
-    padding: 1rem;
-    background: yellow;
-    display: flex; /* simply makes its "direct children" to flex-items */
-    /* flex-direction: column; */ /* gap: 1rem; */
+  background: yellow;
+  /* margin: 0.5rem; */
+  border-radius: 6px;
+  /* Adjust for the margin */
+  /* width: calc(100% - 1rem); */
 
-    /* https://www.youtube.com/watch?v=phWxA89Dy94&ab_channel=SlayingTheDragon */
-    gap: 1rem; /* since flex-direction is row thus it's just horizontal spacing */
-}
+  width: 100%;
 
-div > h2 {
-    border-bottom: solid 2px dodgerblue;
-}
+  /* Or set a fixed height like 70vh or 70px as needed */
+  height: 100vh;
 
-
-/* N.B: flex-basis simply means current viewport's width and height */
-
-/* so, when viewport grows/shrink; based on that flex grow and shrink would be calculated */
-
-/* Viewport growing (and at this moment viewport width 480 and flex has 4 children, so if any children flex: 2, then ((480 / 4) * 2) = 240px */
-
-/* Viewport shrinking (and at this moment viewport width 240 and flex has 4 children, so if any children flex: 2, then ((240 / 4) * 2) = 120px */
-
-/*
-
-It also depends on the order of the flex children, so for the first children it can take mentioned space but e.g.
-total viewport initially 1200px and now viewport width is 1600px and flex has 4 children so
-if first 3 flex children taking equal spacing let's say first 3 takes total 300px;
-so 1600 - 300 = 1300px remaining space thus (4 / 2) * 1300 = 650px + flex basis size (if mentioned otherwise remaining available space)
-
-*/
-
-.item:first-child {
-    background: red;
-    /* let' assume available space is 120px and it has five children */
-    /* so when growing this "first-child" will get 120 * 2/5 = 48px & remaining space (120-48) will be divided to other flex children equally unless some of them uses flex property as well and when shrinking it will shrink (ogSize - 120 * 1/5) will be its new size while shrinking  */
-    flex: 2 1 auto; /* growingSize, shrinkingSize, initialSizeBeforeGrowOrShrink  */
+  padding: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  box-sizing: border-box; /* To include padding and border in the element's total width and height */
+  overflow: hidden; /* Prevent container from scrolling */
 }
 
 .item {
-    /* flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto; */
+  flex: 1 1 auto;
+  padding: 10px;
+  border-radius: 1rem;
+}
 
-    /* how much flex item could grow/shrink based on the given flex-basis */
-    /* if it's auto then it'll try to fit empty space */
-    /* 1 1 200px means , original size is 200px but when growing/shrinking all flex-child will add/subtract same amount of space from the available space */
-    /* 1 1 0 , take the available empty space among flex children equally since here flex-grow is 1 */
-    flex: 1 1 auto;
-    padding: 10px;
-    background-color: rgba(17, 105, 121, 0.1);
-    border-radius: 1rem;
+.item:first-child {
+  background: red;
 }
 
 .item:nth-child(2) {
-    background-color: green;
-    flex: 4;
-    /* flex: 1080;  */
+  background: green;
 }
 
 .item:nth-child(3) {
-    background: aqua;
+  background: aqua;
 }
 
 .item:nth-child(4) {
-    background-color: teal;
-    flex: 2;
-    /*height: 480px; !* fixed height *!*/
-    height: 100%;
-    border: none;
+  background: teal;
 }
 
 .item:nth-child(5) {
-    background: goldenrod;
+  background: goldenrod;
 }
 
-/* Button with Fontawesome icon */
+/* Media queries for different breakpoints */
+
+@media (max-width: 767px) {
+  .flex-container {
+    flex-direction: column; /* Stack items vertically */
+
+    /* Allow container to expand based on content */
+    /* height: auto;  */
+
+    height: 100vh;
+  }
+
+  .item {
+    flex: 1 1 100%; /* Take full width of the container */
+    margin-bottom: 1rem; /* Add spacing between items */
+  }
+}
+
+/* Mobile (Portrait) */
+@media (max-width: 480px) {
+  .item {
+    flex: 1 1 auto;
+  }
+  .item:first-child {
+    flex: 2 1 auto;
+  }
+  .item:nth-child(2) {
+    flex: 1;
+  }
+  .item:nth-child(4) {
+    flex: 1;
+  }
+}
+
+/* Mobile (Landscape) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .item {
+    flex: 1 1 auto; /* Adjust as needed */
+  }
+  .item:first-child {
+    flex: 2 1 auto;
+  }
+  .item:nth-child(2) {
+    flex: 4;
+  }
+  .item:nth-child(4) {
+    flex: 2;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .item {
+    flex: 1 1 auto; /* Adjust as needed */
+  }
+  .item:first-child {
+    flex: 2 1 auto;
+  }
+  .item:nth-child(2) {
+    flex: 3;
+  }
+  .item:nth-child(4) {
+    flex: 2;
+  }
+}
+
+/* Small Desktop */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .item {
+    flex: 1 1 auto; /* Adjust as needed */
+  }
+  .item:first-child {
+    flex: 2 1 auto;
+  }
+  .item:nth-child(2) {
+    flex: 4;
+  }
+  .item:nth-child(4) {
+    flex: 2;
+  }
+}
+
+/* Medium Desktop */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .item {
+    flex: 1 1 auto; /* Adjust as needed */
+  }
+  .item:first-child {
+    flex: 2 1 auto;
+  }
+  .item:nth-child(2) {
+    flex: 3;
+  }
+  .item:nth-child(4) {
+    flex: 2;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+  .item {
+    flex: 1 1 auto; /* Adjust as needed */
+  }
+  .item:first-child {
+    flex: 2 1 auto;
+  }
+  .item:nth-child(2) {
+    flex: 4;
+  }
+  .item:nth-child(4) {
+    flex: 2;
+  }
+}
+
+div > h2 {
+  border-bottom: solid 2px dodgerblue;
+}
+
+/* Button with Font-awesome icon */
 
 .btn {
-    background-color: lightgreen;
-    padding: 12px 16px;
-    font-size: 16px;
-    cursor: pointer;
+  background-color: lightgreen;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .btn:hover {
-    background-color: green;
+  background-color: green;
 }
